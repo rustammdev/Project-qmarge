@@ -1,9 +1,10 @@
 import express from 'express';
-
+import userController from '../controllers/user.controller.js';
 const route = express.Router();
 
-route.post('/register', (req, res) => [
-  res.status(200).send('Register router'),
-]);
+//@desc Register user
+//@route POST /api/users/register
+//@access public
+route.post('/register', userController);
 
 export default route;
