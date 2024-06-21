@@ -13,12 +13,18 @@ const eventScheme = mongoose.Schema(
       required: [true, 'Please create the event name'],
     },
 
+    // Event haqida qisqa malumot berib ketiladi
+    event_desc: {
+      type: String,
+      required: false,
+      default: "Savollarni yo'llang >>>",
+    },
+
     //   Ushbu id avtamatik joylashadi event yaratgan insonniki
     // created_by == user_id
     created_by: {
       type: String,
       required: [true, 'Please add the id'],
-      unique: true,
     },
   },
   { timestamps: true }
