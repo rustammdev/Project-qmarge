@@ -11,11 +11,17 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// home route
 app.use('/', HomeRouter);
+
+// ro'yxatdan o'tish
 app.use('/api/user', userRouter);
+
+// event yaratish
 app.use('/api/events/', eventRouter);
 
 
+// Mavjud bo'lmagan rout uchun error
 app.use((req, res, next) => {
   res.status(404).send('This route is not define');
 });
