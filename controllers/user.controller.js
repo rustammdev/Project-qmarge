@@ -27,7 +27,7 @@ const userController = async (req, res) => {
 
     // DB ga malumotlarni yozish
     const hashed = await bcrypt.hash(password, 10);
-    const user = User.create({
+    const user = await User.create({
       username,
       email,
       password: hashed,

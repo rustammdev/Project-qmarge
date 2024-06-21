@@ -2,6 +2,7 @@ import express from 'express';
 import HomeRouter from './routes/home-route.js';
 import userRouter from './routes/user-route.js';
 import eventRouter from './routes/event.route.js';
+import questionRouter from './routes/question.route.js';
 import connectDb from './db/mongo.js';
 import 'dotenv/config'
 
@@ -18,8 +19,11 @@ app.use('/', HomeRouter);
 app.use('/api/user', userRouter);
 
 // event yaratish
-app.use('/api/events/', eventRouter);
+app.use('/api/event', eventRouter);
 
+
+// mavjud eventga savol yuborish
+app.use('/api/event', questionRouter);
 
 // Mavjud bo'lmagan rout uchun error
 app.use((req, res, next) => {
