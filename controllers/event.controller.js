@@ -5,7 +5,7 @@ const eventController = async (req, res) => {
   try {
     let { event_name, created_by } = req.body;
     if (!event_name) {
-      res.status(400);
+      return res.status(400);
       throw new Error("Malumotlar bo'sh bo'lmasligi kerak!");
     }
 
@@ -16,10 +16,9 @@ const eventController = async (req, res) => {
     const isAviable = await User.findOne({ user_id: created_by });
     if (isAviable) {
       await Event.create(req.body);
-      res.status(200).send('Event muvafaqiyatli yaratildi');
-    } else {
-      res.status(400).send('User malumotlari topilmadi');
+      return res.status(200).send('Event muvafaqiyatli yaratildi');
     }
+    res.status(400).send('User malumotlari topilmadi');
   } catch (error) {
     res
       .status(500)

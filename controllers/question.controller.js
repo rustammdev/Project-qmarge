@@ -6,14 +6,14 @@ const questionController = async (req, res) => {
     const { event_id, asked_by, question_text } = req.body;
 
     if (!event_id || !asked_by || !question_text) {
-      res.status(400);
+      return res.status(400);
       throw new Error("Malumotlar bo'sh bo'lmasligi kerak!");
     }
 
     // event mavjudlikka tekshirish
     const event = await Event.findOne({ event_id: event_id });
     if (!event) {
-      res.status(500).send('Event mavjud emas');
+      return res.status(500).send('Event mavjud emas');
     }
 
     const question = await Question.create(req.body);

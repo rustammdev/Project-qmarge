@@ -14,14 +14,14 @@ const userController = async (req, res) => {
   try {
     let { username, email, password } = req.body;
     if (!email || !password || !username) {
-      res.status(400);
+      return res.status(400);
       throw new Error("Malumotlar bo'sh bo'lmasligi kerak!");
     }
 
     // User malumotlari db borlikka tekshirish
     const isAviable = await User.findOne({ email });
     if (isAviable) {
-      res.status(400);
+      return res.status(400);
       throw new Error('User malumotlari allaqachon mavjud!');
     }
 
