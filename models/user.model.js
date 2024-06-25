@@ -1,20 +1,20 @@
-import mongoose from 'mongoose';
-import { v4 as uuidv4 } from 'uuid';
+import mongoose from "mongoose";
+import { v4 as uuidv4 } from "uuid";
 
 const userSchem = mongoose.Schema(
   {
     username: {
       type: String,
-      required: [true, 'Please add the user name'],
-      // unique
+      required: [true, "Please add the user name"],
+      unique: true,
     },
     email: {
       type: String,
-      required: [true, 'Please add the email address'],
+      required: [true, "Please add the email address"],
     },
     password: {
       type: String,
-      required: [true, 'Please add the password'],
+      required: [true, "Please add the password"],
     },
     user_id: {
       type: String,
@@ -25,6 +25,6 @@ const userSchem = mongoose.Schema(
   { timestamps: true }
 );
 
-const model = mongoose.model('users', userSchem);
+const model = mongoose.model("users", userSchem);
 
 export default model;

@@ -41,7 +41,7 @@ const getQuestions = async (req, res) => {
 
 
     // Savollarni db ga qoshish
-    const eventQuestion = EventQuestion.create({
+    const eventQuestion = await EventQuestion.create({
       event_id: event_id,
       created_by: user_id,
       question_text: questionTextMassiv,

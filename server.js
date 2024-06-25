@@ -1,11 +1,12 @@
-import express from 'express';
-import HomeRouter from './routes/home.route.js';
-import userRouter from './routes/user.route.js';
-import eventRouter from './routes/event.route.js';
-import questionRouter from './routes/question.route.js';
-import getQuestionRouter from './routes/get.questions.route.js';
-import connectDb from './db/mongo.js';
-import 'dotenv/config';
+import express from "express";
+import HomeRouter from "./routes/home.route.js";
+import userRouter from "./routes/user.route.js";
+import eventRouter from "./routes/event.route.js";
+import questionRouter from "./routes/question.route.js";
+import getQuestionRouter from "./routes/get.questions.route.js";
+import connectDb from "./db/mongo.js";
+import homeRoute from "./routes/home.route.js";
+import "dotenv/config";
 
 connectDb();
 const app = express();
@@ -14,23 +15,23 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // home route
-app.use('/', HomeRouter);
+app.use("/", homeRoute);
 
 // ro'yxatdan o'tish
-app.use('/api/user', userRouter);
+app.use("/user", userRouter);
 
 // event yaratish
-app.use('/api/event', eventRouter);
+app.use("/api/event", eventRouter);
 
 // mavjud eventga savol yuborish
-app.use('/api/event', questionRouter);
+app.use("/api/event", questionRouter);
 
 // Eventga tegishli savollarni olish
-app.use('/api/event', getQuestionRouter);
+app.use("/api/event", getQuestionRouter);
 
 // Mavjud bo'lmagan rout uchun error
 app.use((req, res, next) => {
-  res.status(404).send('This route is not define');
+  res.status(404).send("This route is not define");
 });
 
 const PORT = process.env.PORT || 5000;
